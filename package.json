@@ -1,0 +1,18 @@
+{
+	"name": "vbend",
+	"version": "0.1.0",
+	"description": "Datamoshing Library",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/roecrew/magsearch.git"
+	},
+	"bin": {
+		"magsearch": "./app.js"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC"
+}
