@@ -3,6 +3,8 @@ Datamosh your videos.
 
 ![Image](http://i.imgur.com/gQ100W5.jpg)
 
+![Image](https://media.giphy.com/media/skF6pUyZBE3NC/giphy.gif)
+
 ## Supported File Types
 
 * mp4
