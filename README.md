@@ -15,7 +15,7 @@ Datamosh your videos.
 
 ## Methods
 
-    glitch(offset, value); //default values (10000, 0)
+    glitch(offset, value, freq); //default values (10000, 0, 0)
     
     generate(newFilename); //default value <filename>_glitched.<filetype>
 
