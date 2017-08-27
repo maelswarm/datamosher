@@ -27,6 +27,9 @@ File.prototype.glitch = function(off, val, freq) {
 	if(off == undefined) {
 		off = 10000;
 	}
+	if(freq == undefined) {
+		freq = 0;
+	}
 	var x = 0;
 	if(this.fileType == "mp4") {
 		for(var i = getMPEGStart(this.data); i<this.rawData.length; i++) {
