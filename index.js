@@ -45,8 +45,12 @@ File.prototype.glitch = function(off, val) {
 	}
 }
 
-File.prototype.generate = function() {
-	fs.writeFileSync(this.fileName+"_glitched."+this.fileType, this.rawData, 'utf8');
+File.prototype.generate = function(fn) {
+	if(fn == undefined) {
+		fs.writeFileSync(this.fileName+"_glitched."+this.fileType, this.rawData, 'utf8');
+	} else {
+		fs.writeFileSync(fn, this.rawData, 'utf8');
+	}
 }
 
 module.exports = File;
