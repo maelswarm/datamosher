@@ -1,6 +1,6 @@
 {
 	"name": "datamosher",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"description": "Datamoshing Library",
 	"main": "index.js",
 	"repository": {
