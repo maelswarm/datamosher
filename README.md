@@ -11,14 +11,29 @@ Datamosh your videos.
 
     npm install datamosher
 
-## Functions
+## Methods
 
     glitch(offset, value); //default values (10000, 0)
+    
     generate(newFilename); //default value <filename>_glitched.<filetype>
 
+## Properties
+
+    fileName
+    
+	fileType
+    
+	rawData //hex buffer
+    
+	data //string buffer
+
 ## Example
+    
+    //simple datamoshing program
     
     var dmosh = require("datamosher");
     var file = new dmosh("video.mp4");
     file.glitch();
     file.generate();
+    
+    console.log(file.rawData);
