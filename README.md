@@ -14,7 +14,7 @@ Datamosh your videos.
 ## Functions
 
     glitch(offset, value); //default values (10000, 0)
-    generate();
+    generate(newFilename); //default value <filename>_glitched.<filetype>
 
 ## Example
     
