@@ -13,7 +13,7 @@ Datamosh your videos.
 
 ## Functions
 
-    glitch(offset, value);
+    glitch(offset, value); //default values (10000, 0)
     generate();
 
 ## Example
