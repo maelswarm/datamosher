@@ -1,6 +1,8 @@
 # datamosher
 Datamosh your videos.
 
+![Image](http://i.imgur.com/gQ100W5.jpg)
+
 ## Supported File Types
 
 * mp4
