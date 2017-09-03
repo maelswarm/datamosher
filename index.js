@@ -31,7 +31,7 @@ var File = function (name) {
 	this.data = this.rawData.toString();
 };
 
-File.prototype.glitch = function(off, val, freq, repeat, start, end, left, right) {
+File.prototype.glitchAVI = function(off, val, freq, repeat, start, end) {
 	if(val == undefined) {
 		val = 0;
 	}
@@ -40,6 +40,63 @@ File.prototype.glitch = function(off, val, freq, repeat, start, end, left, right
 	}
 	if(off == undefined) {
 		off = 10000;
+	}
+	if(freq == undefined) {
+		freq = 1;
+	}
+	if(start == undefined) {
+		start = 0;
+	}
+	if(end == undefined) {
+		end = 100;
+	}
+	var x = 0;
+	for(var i = getAVIStart(this.data)+Math.round(this.rawData.length*(start/100.0)); i<Math.round(this.rawData.length*(end/100.0)); i++) {
+		if(x % freq == 0) {
+			for(var j=0;j<repeat;j++) {
+				this.rawData[i+off*(1+j)] = val;
+			}
+		}
+		x++;
+	}
+}
+
+File.prototype.glitchMKV = function(off, val, freq, repeat, start, end) {
+	if(val == undefined) {
+		val = 0;
+	}
+	if(repeat == undefined) {
+		repeat = 100;
+	}
+	if(off == undefined) {
+		off = 10000;
+	}
+	if(freq == undefined) {
+		freq = 1;
+	}
+	if(start == undefined) {
+		start = 0;
+	}
+	if(end == undefined) {
+		end = 100;
+	}
+	var x = 0;
+	for(var i = Math.round(this.rawData.length*(start/100.0)); i<Math.round(this.rawData.length*(end/100.0)); i++) {
+		if(this.rawData[i] == 31 && this.rawData[i+1] == 67 && this.rawData[i+2] == 182 && this.rawData[i+3] == 117 && x % freq == 0) {
+			for(var j=0;j<repeat;j++) {
+				this.rawData[i+off*(1+j)] = val;
+			}
+		}
+		x++;
+	}
+}
+
+File.prototype.glitchMP4 = function(val, freq, repeat, start, end, left, right) {
+	if(val == undefined) {
+		val = 0;
+	}
+	if(repeat == undefined) {
+		repeat = 100;
 	}
 	if(freq == undefined) {
 		freq = 1;
@@ -66,42 +123,13 @@ File.prototype.glitch = function(off, val, freq, repeat, start, end, left, right
 		var startP = getMPEGStart(this.data);
 		for(var i = startP+Math.round((this.rawData.length - startP)*(start/100.0)); i<Math.round((this.rawData.length - startP)*(end/100.0)); i++) {
 			if(this.rawData[i] == 0 && this.rawData[i+1] == 0 && this.rawData[i+2] == 1 && (this.rawData[i+3] & 0x1F) != 5 && x % freq == 0) { //63 non iframe
-				console.log(this.rawData[i+3] & 0x1F);
+				//console.log(this.rawData[i+3] & 0x1F);
 				//console.log(buffer);
 				var nextSect = getMPEGDataSect(this.rawData.slice(i+3));
-				
-//				for(var k = i+4; k<i+nextSect; k++) {
-//					//console.log(k + " " + (i+nextSect) + " " + this.rawData.length)
-//					var wrote = this.rawData.writeUInt32LE(this.rawData[k], k+nextSect);
-//				}
-//				console.log(this.rawData.length);
-				
 				for(var j=parseInt(nextSect*(left/100.0));j<parseInt(nextSect*(right/100.0));j++) {
 					if(j % (repeat*100) === 0) {
 						this.rawData[i+j] = val;
 					}
-				}
-				
-//				for(var j=0;j<repeat;j++) {
-//					this.rawData[i+off*(1+j)] = val;
-//				}
-			}
-			x++;
-		}
-	} else if(this.fileType == "avi") {
-		for(var i = getAVIStart(this.data)+Math.round(this.rawData.length*(start/100.0)); i<Math.round(this.rawData.length*(end/100.0)); i++) {
-			if(x % freq == 0) {
-				for(var j=0;j<repeat;j++) {
-					this.rawData[i+off*(1+j)] = val;
-				}
-			}
-			x++;
-		}
-	} else if(this.fileType == "mkv") {
-		for(var i = Math.round(this.rawData.length*(start/100.0)); i<Math.round(this.rawData.length*(end/100.0)); i++) {
-			if(this.rawData[i] == 31 && this.rawData[i+1] == 67 && this.rawData[i+2] == 182 && this.rawData[i+3] == 117 && x % freq == 0) {
-				for(var j=0;j<repeat;j++) {
-					this.rawData[i+off*(1+j)] = val;
 				}
 			}
 			x++;
