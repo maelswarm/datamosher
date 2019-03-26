@@ -19,7 +19,7 @@ Datamosh your videos.
 
     glitchMP4(value, freq, repeat, start, end, left, right); //default values (0, 0, 1, 0, 100, 10, 90)
     
-    glitchAIV(offset, value, freq, repeat, start, end); //default values (10000, 0, 0, 1, 0, 100)
+    glitchAVI(offset, value, freq, repeat, start, end); //default values (10000, 0, 0, 1, 0, 100)
     
     glitchMKV(offset, value, freq, repeat, start, end); //default values (10000, 0, 0, 1, 0, 100)
     
